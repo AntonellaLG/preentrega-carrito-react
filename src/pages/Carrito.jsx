@@ -31,7 +31,9 @@ const { carrito, agregarCantidad, quitarCantidad, borrarProducto, vaciarCarrito,
             <div key={item.id} style={{ marginBottom: "0.8rem" }}>
               <strong>{item.nombre}</strong> — ${Number(item.precio).toFixed(0)}
               <br />
-              Cantidad: {item.cantidad || 1} &nbsp;
+              <p>
+                <span translate='no'>Cantidad:</span> {item.cantidad || 1} &nbsp;
+              </p>
               <button className='btn-carrito' onClick={() => quitarCantidad(item.id)}>-</button>
               <button className='btn-carrito' onClick={() => agregarCantidad(item.id)}>+</button>
               <button className='btn-carrito' onClick={() => borrarProducto(item.id)}>Borrar</button>
