@@ -13,8 +13,9 @@ const { carrito, agregarCantidad, quitarCantidad, borrarProducto, vaciarCarrito,
 
   //Calcula el total del carrito
   const total = carrito.reduce((sum, item) => {
-    const cantidad = item.cantidad || 1;
-    return sum + Number(item.precio) * cantidad;
+    const cantidad = Number(item.cantidad || 1);
+    const precioUnitario = Number(item.precio || 0);
+    return sum + cantidad * precioUnitario;
   }, 0);
 
 

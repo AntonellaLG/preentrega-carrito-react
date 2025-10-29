@@ -5,10 +5,11 @@ export default function Pagar() {
   const { usuario, cerrarSesion, carrito } = useAppContext();
   const navigate = useNavigate();
 
-  const total = carrito.reduce(
-    (suma, producto) => suma + Number(producto.precio),
-    0
-  );
+  const total = carrito.reduce((sum, item) => {
+    const cantidad = Number(item.cantidad || 1);
+    const precioUnitario = Number(item.precio || 0);
+    return sum + cantidad * precioUnitario;
+  }, 0);
 
   const comprar = () => {
     alert("¡Compra realizada con éxito!");
@@ -29,8 +30,8 @@ export default function Pagar() {
         {carrito.map((producto) => (
           <div key={producto.id} className="pagar-producto">
             <img src={producto.avatar} alt={producto.nombre} width="60" />
-            <span>{producto.nombre}</span>
-            <strong>${producto.precio}</strong>
+            <span>{producto.nombre} - Cantidad: {producto.cantidad}</span>
+            <strong>Precio unitario: ${producto.precio}</strong>
           </div>
         ))}
 
